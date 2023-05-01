@@ -32,7 +32,7 @@ function operate(firstNum, secondNum, operator) {
 	}
 }
 let firstOperand = 15;
-let operator = '-';
+let operator = '*';
 let secondOperand = 5;
 
 console.log(operate(firstOperand, secondOperand, operator))
