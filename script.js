@@ -1,9 +1,13 @@
-let firstOperand = 15;
-let operator = '*';
-let secondOperand = 5;
+let firstOperand;
+let operator;
+let secondOperand;
 let currentNum = '';
-const nums = document.querySelectorAll('[data-num]')
-let currentDisplay = document.querySelector('.calculator__display-current')
+let result;
+const nums = document.querySelectorAll('[data-num]');
+let currentDisplay = document.querySelector('.calculator__display-current');
+let lastDisplay = document.querySelector('.calculator__display-last');
+const operators = document.querySelectorAll('[data-operator]');
+const equal = document.querySelector('.btn-equal');
 
 function add(a, b) {
 	return a + b;
@@ -42,13 +46,40 @@ function operate(firstNum, secondNum, operator) {
 function updateCurrentValueDisplay(e) {
 	if (currentNum.length < 12) {
 		currentNum += e.currentTarget.dataset.num;
-		console.log(currentNum);
 		currentDisplay.innerText = currentNum;
 	}
+}
+
+function updateLastDisplayValue(e) {
+	if (result) {
+		lastDisplay.innerText = result + e.currentTarget.dataset.operator;
+		operator = e.currentTarget.dataset.operator;
+		firstOperand = Number(currentNum);
+		lastDisplay.innerText = currentNum + e.currentTarget.dataset.operator;
+		currentNum = '';
+		currentDisplay.innerText = 0;
+	}
+	operator = e.currentTarget.dataset.operator;
+	firstOperand = Number(currentNum);
+	lastDisplay.innerText = currentNum + e.currentTarget.dataset.operator;
+	currentNum = '';
+	currentDisplay.innerText = 0;
 }
 
 nums.forEach(num => {
 	num.addEventListener('click', updateCurrentValueDisplay)
 })
 
+operators.forEach(oper => {
+	oper.addEventListener('click', updateLastDisplayValue)
+})
+
+equal.addEventListener('click', () => {
+	secondOperand = Number(currentNum);
+	result = operate(firstOperand, secondOperand, operator);
+	currentDisplay.innerText = result;
+	firstOperand = Number(result);
+	lastDisplay.innerText += currentNum;
+	currentNum = '';
+})
 
