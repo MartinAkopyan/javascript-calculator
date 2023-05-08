@@ -1,3 +1,10 @@
+let firstOperand = 15;
+let operator = '*';
+let secondOperand = 5;
+let currentNum = '';
+const nums = document.querySelectorAll('[data-num]')
+let currentDisplay = document.querySelector('.calculator__display-current')
+
 function add(a, b) {
 	return a + b;
 }
@@ -15,7 +22,7 @@ function divide(a, b) {
 }
 
 function operate(firstNum, secondNum, operator) {
-	if(operator === '+') {
+	if (operator === '+') {
 		return add(firstNum, secondNum);
 	}
 
@@ -23,7 +30,7 @@ function operate(firstNum, secondNum, operator) {
 		return substract(firstNum, secondNum);
 	}
 
-	if(operator === '*') {
+	if (operator === '*') {
 		return multiply(firstNum, secondNum)
 	}
 
@@ -31,9 +38,17 @@ function operate(firstNum, secondNum, operator) {
 		return divide(firstNum, secondNum)
 	}
 }
-let firstOperand = 15;
-let operator = '*';
-let secondOperand = 5;
 
-console.log(operate(firstOperand, secondOperand, operator))
+function updateCurrentValueDisplay(e) {
+	if (currentNum.length < 12) {
+		currentNum += e.currentTarget.dataset.num;
+		console.log(currentNum);
+		currentDisplay.innerText = currentNum;
+	}
+}
+
+nums.forEach(num => {
+	num.addEventListener('click', updateCurrentValueDisplay)
+})
+
 
