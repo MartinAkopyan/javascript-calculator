@@ -61,7 +61,7 @@ body {
 }
 
 .calculator__display {
-	padding-block: 100px;
+	padding-block: 25px;
 	text-align: right;
 }
 
@@ -80,8 +80,9 @@ body {
 	margin-top: 10px;
 }
 
-.btn-equal {
+.btn.btn-equal {
 	grid-area: btn-equal;
+	font-size: 32px;
 }
 
 .btn-ac {
@@ -96,6 +97,11 @@ body {
 	grid-area: btn-mult;
 }
 
+.btn-mult span {
+	position: relative;
+	top: 5px;
+}
+
 .btn-split {
 	grid-area: btn-split;
 }
@@ -104,8 +110,9 @@ body {
 	grid-area: btn-minus;
 }
 
-.btn-dot {
+.btn.btn-dot {
 	grid-area: btn-dot;
+	font-size: 50px;
 }
 
 .btn-0 {
@@ -164,8 +171,8 @@ body {
 
 .btn {
 	/* background-color:#2ca7ff5b; */
-	background: linear-gradient(129.7deg, rgba(255, 255, 255, 0.6) -9.69%, rgba(255, 255, 255, 0.4) 114.23%);
-	backdrop-filter: blur(6px);
+	/* background: linear-gradient(129.7deg, rgba(255, 255, 255, 0.6) -9.69%, rgba(255, 255, 255, 0.4) 114.23%); */
+	backdrop-filter: blur(10px);
 	color: #19ACFF;
 	padding: 5px;
 	font-size: 24px;
@@ -174,6 +181,28 @@ body {
 	justify-content: center;
 	align-items: center;
 	border-radius: 16px;
-	opacity: 0.7;
+	/* opacity: 0.7; */
+	border: 1px solid #ffffffb3;
+	cursor: pointer;
 	/* border: 1px solid #00c2fd; */
+	transition: all ease-in 0.15s;
+}
+
+.btn:hover {
+	scale: 1.05;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+	opacity: 0.7;
+}
+
+.btn:active {
+	scale: 0.95;
+	opacity: 0.1;
+}
+
+
+.btn.btn--secondary {
+	background: unset;
+	background-color: #007bffa1;
+	color: #fff;
+	/* opacity: 1; */
 }
