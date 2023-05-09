@@ -53,19 +53,19 @@ function updateCurrentValueDisplay(e) {
 }
 
 function updateLastDisplayValue(e) {
-	if (result) {
-		lastDisplay.innerText = result + e.currentTarget.dataset.operator;
-		operator = e.currentTarget.dataset.operator;
-		firstOperand = Number(currentNum);
-		lastDisplay.innerText = currentNum + e.currentTarget.dataset.operator;
-		currentNum = '';
-		currentDisplay.innerText = 0;
-	}
 	operator = e.currentTarget.dataset.operator;
 	firstOperand = Number(currentNum);
 	lastDisplay.innerText = currentNum + e.currentTarget.dataset.operator;
 	currentNum = '';
 	currentDisplay.innerText = 0;
+
+	if (result) {
+		operator = e.currentTarget.dataset.operator;
+		firstOperand = Number(result);
+		lastDisplay.innerText = firstOperand + e.currentTarget.dataset.operator;
+		currentNum = '';
+		currentDisplay.innerText = 0;
+	}
 }
 
 function clear() {
@@ -78,16 +78,14 @@ function clear() {
 
 function deleteLastNum() {
 	let updatedNum = currentNum.split('');
-	if(currentNum.toString().length >= 1) {
-		currentDisplay.textContent = 0;
-		currentNum = 0;
-	}
-
+	console.log(currentNum);
 	updatedNum.pop();
-	console.log(currentNum.toString().length);
-	console.log(updatedNum);
 	currentNum = updatedNum.join('')
 	currentDisplay.innerText = currentNum;
+	if(currentDisplay.textContent === '') {
+		currentNum = '';
+		currentDisplay.textContent = '0';
+	}
 }
 
 nums.forEach(num => {
@@ -101,7 +99,7 @@ operators.forEach(oper => {
 equal.addEventListener('click', () => {
 	secondOperand = Number(currentNum);
 	result = operate(firstOperand, secondOperand, operator);
-	result = Math.round(result * 1000) / 1000;
+	result = Math.round(result * 10000) / 10000;
 	currentDisplay.innerText = result;
 	firstOperand = Number(result);
 	lastDisplay.innerText += currentNum;
@@ -111,3 +109,7 @@ equal.addEventListener('click', () => {
 clearBtn.addEventListener('click', clear)
 
 deleteBtn.addEventListener('click', deleteLastNum)
+
+window.addEventListener('keydown', (e) => {
+	console.log(e.key)
+})
