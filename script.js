@@ -29,19 +29,19 @@ function divide(a, b) {
 
 function operate(firstNum, secondNum, operator) {
 	if (operator === '+') {
-		return add(firstNum, secondNum);
+		return add(Number(firstNum), Number(secondNum));
 	}
 
 	if (operator === '-') {
-		return substract(firstNum, secondNum);
+		return substract(Number(firstNum), Number(secondNum));
 	}
 
 	if (operator === '*') {
-		return multiply(firstNum, secondNum)
+		return multiply(Number(firstNum), Number(secondNum))
 	}
 
 	if (operator === '/') {
-		return divide(firstNum, secondNum)
+		return divide(Number(firstNum), Number(secondNum))
 	}
 }
 
